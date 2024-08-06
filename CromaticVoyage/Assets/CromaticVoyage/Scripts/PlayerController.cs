@@ -7,8 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float jumpForce;
     [SerializeField] private float moveSpeed;
-    private Rigidbody2D rig;
+    [SerializeField] private LayerMask groundLayer; // Configuração do Layer para o chão
 
+    private Rigidbody2D rig;
+    private bool isGrounded;
     private Stack<Command> _playerCommands;
     private Vector2 _moveDirection;
 
@@ -18,24 +20,46 @@ public class PlayerController : MonoBehaviour
         _playerCommands = new Stack<Command>();
     }
 
-    public void RedisterJump(InputAction.CallbackContext context)
+    void Update()
     {
-        if (context.performed)
+        // Aqui você pode adicionar qualquer lógica adicional de atualização, se necessário
+    }
+
+    private void FixedUpdate()
+    {
+        // Aplica a velocidade horizontal
+        rig.velocity = new Vector2(_moveDirection.x * moveSpeed, rig.velocity.y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if ((groundLayer & 1 << other.gameObject.layer) != 0)
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if ((groundLayer & 1 << other.gameObject.layer) != 0)
+        {
+            isGrounded = false;
+        }
+    }
+
+    public void RegisterJump(InputAction.CallbackContext context)
+    {
+        if (context.performed && isGrounded)
         {
             _playerCommands.Push(new Jump(rig, jumpForce));
             _playerCommands.Peek().Do();
         }
     }
 
-    public void RedisterMove(InputAction.CallbackContext context)
+    public void RegisterMove(InputAction.CallbackContext context)
     {
         _playerCommands.Push(new Move(context.ReadValue<Vector2>(), this));
         _playerCommands.Peek().Do();
-    }
-
-    private void FixedUpdate()
-    {
-        rig.velocity = new Vector2(_moveDirection.x * moveSpeed, rig.velocity.y);
     }
 
     public void SetMoveDirection(Vector2 direction)
@@ -60,15 +84,15 @@ public class Jump : Command
         rig = rb2d;
         jumpForce = jump;
     }
+
     public override void Do()
     {
-        Debug.Log("Pulo: " + jumpForce);
         rig.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
     public override void Undo()
     {
-        
+        // Implementar se necessário
     }
 }
 
@@ -90,6 +114,7 @@ public class Move : Command
 
     public override void Undo()
     {
-        
+        // Implementar se necessário
     }
 }
+    
