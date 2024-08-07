@@ -7,10 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float jumpForce;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private LayerMask groundLayer; // Configuração do Layer para o chão
-
     private Rigidbody2D rig;
-    private bool isGrounded;
+    public bool isGrounded;
+    private bool isJumping;
+
     private Stack<Command> _playerCommands;
     private Vector2 _moveDirection;
 
@@ -18,33 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         _playerCommands = new Stack<Command>();
-    }
-
-    void Update()
-    {
-        // Aqui você pode adicionar qualquer lógica adicional de atualização, se necessário
-    }
-
-    private void FixedUpdate()
-    {
-        // Aplica a velocidade horizontal
-        rig.velocity = new Vector2(_moveDirection.x * moveSpeed, rig.velocity.y);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if ((groundLayer & 1 << other.gameObject.layer) != 0)
-        {
-            isGrounded = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if ((groundLayer & 1 << other.gameObject.layer) != 0)
-        {
-            isGrounded = false;
-        }
+        isGrounded = false;
     }
 
     public void RegisterJump(InputAction.CallbackContext context)
@@ -53,7 +27,14 @@ public class PlayerController : MonoBehaviour
         {
             _playerCommands.Push(new Jump(rig, jumpForce));
             _playerCommands.Peek().Do();
+            isGrounded = false;
         }
+
+        if (context.canceled)
+        {
+            rig.velocity = new Vector2(rig.velocity.x, 0);
+        }
+        
     }
 
     public void RegisterMove(InputAction.CallbackContext context)
@@ -62,9 +43,31 @@ public class PlayerController : MonoBehaviour
         _playerCommands.Peek().Do();
     }
 
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.A)) return;
+        rig.velocity = new Vector2(_moveDirection.x * moveSpeed, rig.velocity.y);
+    }
+
     public void SetMoveDirection(Vector2 direction)
     {
         _moveDirection = direction;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 6 )
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 6)
+        {
+            isGrounded = false;
+        }
     }
 }
 
@@ -84,7 +87,6 @@ public class Jump : Command
         rig = rb2d;
         jumpForce = jump;
     }
-
     public override void Do()
     {
         rig.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -92,7 +94,7 @@ public class Jump : Command
 
     public override void Undo()
     {
-        // Implementar se necessário
+
     }
 }
 
@@ -114,7 +116,7 @@ public class Move : Command
 
     public override void Undo()
     {
-        // Implementar se necessário
+
     }
 }
-    
+  
