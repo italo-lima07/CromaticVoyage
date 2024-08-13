@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public void RegisterJump(InputAction.CallbackContext context)
     {
-        if (context.performed && isGrounded)
+        if (context.started && isGrounded)
         {
             _playerCommands.Push(new Jump(rig, jumpForce));
             _playerCommands.Peek().Do();
