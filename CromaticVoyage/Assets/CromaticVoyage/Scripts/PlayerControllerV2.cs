@@ -9,7 +9,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float moveSpeed;
     private Rigidbody2D rig;
-    private bool isGrounded;
+    private bool isJumping;
 
     private Stack<Command> _playerCommands;
     private Vector2 _moveDirection;
@@ -18,7 +18,7 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         /*_playerCommands = new Stack<Command>();*/
-        isGrounded = false;
+        isJumping = false;
     }
 
     private void Update()
@@ -31,11 +31,11 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if (!isGrounded)
+            if (!isJumping)
             {
                 //anim.SetInteger("transition", 2);
                 rig.AddForce(new Vector2(0,jumpForce * 2), ForceMode2D.Impulse);
-                isGrounded = true;
+                isJumping = true;
             }
             
             /*if (Input.GetButtonUp("Jump"))
@@ -68,15 +68,9 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (other.gameObject.layer == 6 )
         {
-            isGrounded = true;
+            isJumping = false;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.layer == 6)
-        {
-            isGrounded = true;
-        }
-    }
+    
 }
