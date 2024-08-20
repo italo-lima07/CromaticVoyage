@@ -33,25 +33,24 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             if (!isJumping)
             {
-                //anim.SetInteger("transition", 2);
-                rig.AddForce(new Vector2(0,jumpForce * 2), ForceMode2D.Impulse);
+                rig.AddForce(new Vector2(0, jumpForce * 2), ForceMode2D.Impulse);
                 isJumping = true;
             }
-            
-            /*if (Input.GetButtonUp("Jump"))
-            {
-                rig.velocity = new Vector2(rig.velocity.x, 0);
-            }*/
-            
         }
-        
     }
 
     public void Move()
     {
-        /*_playerCommands.Push(new Move(context.ReadValue<Vector2>(), this));
-        _playerCommands.Peek().Do();*/
         _moveDirection = Input.GetAxis("Horizontal") * Vector2.right;
+        
+        if (_moveDirection.x > 0)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (_moveDirection.x < 0)
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
     }
 
     private void FixedUpdate()
@@ -66,11 +65,10 @@ public class PlayerControllerV2 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 6 )
+        if (other.gameObject.layer == 6)
         {
             isJumping = false;
         }
     }
-
-    
 }
+
