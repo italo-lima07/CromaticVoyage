@@ -13,18 +13,21 @@ public class PlayerControllerV2 : MonoBehaviour
 
     private Stack<Command> _playerCommands;
     private Vector2 _moveDirection;
+    private BoxCollider2D playerCollider2D;
 
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         /*_playerCommands = new Stack<Command>();*/
         isJumping = false;
+        playerCollider2D = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
     {
         Jump();
         Move();
+        Escaneando();
     }
 
     public void Jump()
@@ -63,12 +66,28 @@ public class PlayerControllerV2 : MonoBehaviour
         _moveDirection = direction;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == 6)
         {
             isJumping = false;
         }
+    }*/
+
+    void Escaneando()
+    {
+        RaycastHit2D raio = Physics2D.Raycast(transform.position, Vector2.down, 1f);
+        DbLinha(transform.position, Vector2.down, 1f);
+        if (raio.collider && raio.collider.IsTouching(playerCollider2D))
+        {
+            isJumping = false;
+        }
+    }
+    
+    
+    private void DbLinha(Vector2 startPos, Vector2 dir, float tamanho)
+    {
+        Debug.DrawLine(startPos,startPos + dir * tamanho,Color.yellow,Time.deltaTime);
     }
 }
 
