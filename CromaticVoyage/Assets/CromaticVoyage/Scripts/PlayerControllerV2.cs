@@ -8,11 +8,19 @@ public class PlayerControllerV2 : MonoBehaviour
 {
     [SerializeField] private float jumpForce;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private int maxHealth = 100; // Vida máxima do jogador
+    private int currentHealth; // Vida atual do jogador
     private Rigidbody2D rig;
     private bool isJumping;
+    public static bool IsAttack1Used = false;
 
     [SerializeField] private Animator animator;
-
+    
+    private GameObject attackArea = default;
+    private bool attacking = false;
+    private float timeToAttack = 0.25f;
+    private float timer = 0f;
+    private bool isOnDamageArea = false;
 
     private Stack<Command> _playerCommands;
     private Vector2 _moveDirection;
@@ -21,9 +29,12 @@ public class PlayerControllerV2 : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        /*_playerCommands = new Stack<Command>();*/
         isJumping = false;
         playerCollider2D = GetComponent<BoxCollider2D>();
+        currentHealth = maxHealth;
+        // Configuração da área de ataque
+        attackArea = transform.GetChild(0).gameObject; // Supondo que a área de ataque seja o primeiro filho do player
+        attackArea.SetActive(false); // Certifique-se de que a área de ataque esteja desativada por padrão
     }
 
     private void Update()
@@ -33,6 +44,24 @@ public class PlayerControllerV2 : MonoBehaviour
         Move();
         Escaneando();
         Attack();
+        if (attacking)
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= timeToAttack)
+            {
+                timer = 0f;
+                attacking = false;
+                attackArea.SetActive(false);
+                animator.ResetTrigger("IsAtk");
+            }
+        }
+        
+        // Aplicar dano se o jogador estiver em uma área de dano
+        if (isOnDamageArea)
+        {
+            TakeDamage(10); // Ajuste o valor do dano conforme necessário
+        }
     }
 
     public void Jump()
@@ -84,7 +113,13 @@ public class PlayerControllerV2 : MonoBehaviour
             // Aqui você pode adicionar lógica para cada ataque específico
             if (Input.GetKeyDown(KeyCode.J))
             {
+                animator.SetTrigger("IsAtk");
+                AttackLogic();
                 Debug.Log("Ataque 1 executado");
+                IsAttack1Used = true;
+
+                // Inicia a lógica de reset de ataque (opcional, já está coberta pelo Update)
+                //StartCoroutine(ResetAttack());
             }
             else if (Input.GetKeyDown(KeyCode.K))
             {
@@ -99,12 +134,19 @@ public class PlayerControllerV2 : MonoBehaviour
             StartCoroutine(ResetAttack());
         }
     }
+    
+    private void AttackLogic()
+    {
+        attacking = true;
+        attackArea.SetActive(true);
+    }
 
     private IEnumerator ResetAttack()
     {
         // Aguarda um tempo para que a animação de ataque termine
         yield return new WaitForSeconds(0.5f); // Ajuste o tempo conforme a duração da sua animação
 
+        IsAttack1Used = false;
         // Reseta o parâmetro de ataque
         animator.ResetTrigger("IsAtk");
     }
@@ -118,22 +160,31 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         _moveDirection = direction;
     }
-
-    /*private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.layer == 6)
-        {
-            isJumping = false;
-        }
-    }*/
-
-    void Escaneando()
+    private void Escaneando()
     {
         RaycastHit2D raio = Physics2D.Raycast(transform.position, Vector2.down, 1f);
         DbLinha(transform.position, Vector2.down, 1f);
+
         if (raio.collider && raio.collider.IsTouching(playerCollider2D))
         {
             isJumping = false;
+
+            // Verifica se o objeto colidido tem a tag "Plataform"
+            if (raio.collider.CompareTag("Plataform"))
+            {
+                // Define o objeto do jogador como filho da plataforma
+                transform.parent = raio.collider.transform;
+            }
+            else
+            {
+                // Se não for uma plataforma, remove a paternidade (se já estiver definida)
+                transform.parent = null;
+            }
+        }
+        else
+        {
+            // Se não estiver tocando em nada, remove a paternidade
+            transform.parent = null;
         }
     }
     
@@ -142,5 +193,38 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         Debug.DrawLine(startPos,startPos + dir * tamanho,Color.yellow,Time.deltaTime);
     }
+    
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    /*private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Damage1"))
+        {
+            isOnDamageArea = true;
+            Debug.Log("Jogador entrou na área de dano");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Damage1"))
+        {
+            isOnDamageArea = false;
+            Debug.Log("Jogador saiu da área de dano");
+        }
+    }*/
 }
 
