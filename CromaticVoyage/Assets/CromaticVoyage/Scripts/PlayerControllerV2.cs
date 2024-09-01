@@ -17,6 +17,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private Animator animator;
     
     private GameObject attackArea = default;
+    [SerializeField] private GameObject attackArea3;
     private bool attacking = false;
     private float timeToAttack = 0.25f;
     private float timer = 0f;
@@ -25,16 +26,33 @@ public class PlayerControllerV2 : MonoBehaviour
     private Stack<Command> _playerCommands;
     private Vector2 _moveDirection;
     private BoxCollider2D playerCollider2D;
+    
+    // Variáveis para o disparo do projétil
+    [SerializeField] private GameObject bulletPrefab; // Prefab do projétil
+    [SerializeField] private Transform firePoint; // Ponto de saída do projétil
+    [SerializeField] private float bulletSpeed = 10f; // Velocidade do projétil
+    [SerializeField] private float bulletLifetime = 2f; // Tempo de vida do projétil antes de se autodestruir
 
+    // Variáveis para o cooldown do Ataque 3
+    [SerializeField] private float attack3Cooldown = 2f; // Tempo de cooldown em segundos
+    private float attack3CooldownTimer = 0f; // Tempo restante de cooldown
+    
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         isJumping = false;
         playerCollider2D = GetComponent<BoxCollider2D>();
         currentHealth = maxHealth;
-        // Configuração da área de ataque
-        attackArea = transform.GetChild(0).gameObject; // Supondo que a área de ataque seja o primeiro filho do player
-        attackArea.SetActive(false); // Certifique-se de que a área de ataque esteja desativada por padrão
+
+        // Configuração das áreas de ataque
+        attackArea = transform.GetChild(0).gameObject; // Primeiro filho do player
+        attackArea.SetActive(false); // Desativando por padrão
+
+        attackArea3 = transform.GetChild(1).gameObject; // Segundo filho do player
+        attackArea3.SetActive(false); // Desativando por padrão
+
+        // Certifique-se de que o firePoint é atribuído corretamente via Inspector ou código
+        // firePoint não deve ser confundido com attackArea3
     }
 
     private void Update()
@@ -53,6 +71,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 timer = 0f;
                 attacking = false;
                 attackArea.SetActive(false);
+                attackArea3.SetActive(false); // Desativa a área de ataque 3 após o tempo
                 animator.ResetTrigger("IsAtk");
             }
         }
@@ -61,6 +80,12 @@ public class PlayerControllerV2 : MonoBehaviour
         if (isOnDamageArea)
         {
             TakeDamage(10); // Ajuste o valor do dano conforme necessário
+        }
+        
+        // Atualiza o timer de cooldown para o Ataque 3
+        if (attack3CooldownTimer > 0)
+        {
+            attack3CooldownTimer -= Time.deltaTime;
         }
     }
 
@@ -110,44 +135,65 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             animator.SetTrigger("IsAtk");
 
-            // Aqui você pode adicionar lógica para cada ataque específico
             if (Input.GetKeyDown(KeyCode.J))
             {
-                animator.SetTrigger("IsAtk");
-                AttackLogic();
+                AttackLogic(attackArea);
                 Debug.Log("Ataque 1 executado");
                 IsAttack1Used = true;
-
-                // Inicia a lógica de reset de ataque (opcional, já está coberta pelo Update)
-                //StartCoroutine(ResetAttack());
             }
             else if (Input.GetKeyDown(KeyCode.K))
             {
+                Shoot();
                 Debug.Log("Ataque 2 executado");
             }
             else if (Input.GetKeyDown(KeyCode.L))
             {
-                Debug.Log("Ataque 3 executado");
+                if (attack3CooldownTimer <= 0)
+                {
+                    Debug.Log("Ataque 3 executado");
+                    Attack3Logic(); // Lógica do Ataque 3
+                    attack3CooldownTimer = attack3Cooldown; // Reseta o cooldown
+                }
+                else
+                {
+                    Debug.Log("Ataque 3 ainda está em cooldown");
+                }
             }
 
-            // Inicia a corrotina para resetar o parâmetro de ataque
             StartCoroutine(ResetAttack());
         }
     }
     
-    private void AttackLogic()
+    private void Shoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+
+        // Define a direção do projétil com base na direção que o jogador está virado
+        bulletRb.velocity = new Vector2(transform.localScale.x * bulletSpeed, 0);
+
+        // Destroi o projétil após um tempo
+        Destroy(bullet, bulletLifetime);
+    }
+    
+    private void AttackLogic(GameObject attackLocation)
     {
         attacking = true;
-        attackArea.SetActive(true);
+        attackLocation.SetActive(true); // Ativa a área de ataque apropriada
+    }
+    private void Attack3Logic()
+    {
+        attackArea3.SetActive(true); // Ativa a área de ataque 3
+        attacking = true; // Define como atacando
+        // Qualquer outra lógica relacionada ao ataque 3 pode ser adicionada aqui
     }
 
     private IEnumerator ResetAttack()
     {
-        // Aguarda um tempo para que a animação de ataque termine
-        yield return new WaitForSeconds(0.5f); // Ajuste o tempo conforme a duração da sua animação
+        yield return new WaitForSeconds(0.5f); // Ajuste conforme necessário
 
         IsAttack1Used = false;
-        // Reseta o parâmetro de ataque
+        attackArea3.SetActive(false); // Desativa a área de ataque 3 após o ataque
         animator.ResetTrigger("IsAtk");
     }
 
