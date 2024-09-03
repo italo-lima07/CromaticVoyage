@@ -36,11 +36,12 @@ public class PlayerControllerV2 : MonoBehaviour
     // Variáveis para o cooldown do Ataque 3
     [SerializeField] private float attack3Cooldown = 2f; // Tempo de cooldown em segundos
     private float attack3CooldownTimer = 0f; // Tempo restante de cooldown
-    
+
+    private bool noChao;
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        isJumping = false;
+        //isJumping = false;
         playerCollider2D = GetComponent<BoxCollider2D>();
         currentHealth = maxHealth;
 
@@ -55,12 +56,38 @@ public class PlayerControllerV2 : MonoBehaviour
         // firePoint não deve ser confundido com attackArea3
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            noChao = other.contacts[0].point.y < transform.position.y;
+            if (noChao)
+            {
+                isJumping = false;
+                animator.SetBool("IsJumping", false);
+            }
+
+            if (noChao && other.gameObject.CompareTag("Plataform"))
+            {
+                
+                // Define o objeto do jogador como filho da plataforma
+                transform.parent = other.collider.transform;
+            }
+            else
+            {
+                // Se não for uma plataforma, remove a paternidade (se já estiver definida)
+                transform.parent = null;
+            }
+            
+        }
+    }
+
     private void Update()
     {
         animator.SetFloat("Speed", Mathf.Abs(_moveDirection.x));
+        //Escaneando();
         Jump();
         Move();
-        Escaneando();
         Attack();
         if (attacking)
         {
@@ -98,16 +125,16 @@ public class PlayerControllerV2 : MonoBehaviour
             rig.AddForce(new Vector2(0, jumpForce * 2), ForceMode2D.Impulse);
 
             // Inicia uma corrotina para aguardar o final do pulo
-            StartCoroutine(EndJump());
+           // EndJump();
         }
     }
 
-    private IEnumerator EndJump()
+    private void EndJump()
     {
         // Aguarda até que a velocidade vertical diminua, indicando que o pulo terminou
         while (rig.velocity.y > 0)
         {
-            yield return null; // Espera um frame
+            return; // Espera um frame
         }
 
         // Define o estado de pulo como falso e atualiza o Animator
@@ -213,25 +240,33 @@ public class PlayerControllerV2 : MonoBehaviour
 
         if (raio.collider && raio.collider.IsTouching(playerCollider2D))
         {
-            isJumping = false;
-
-            // Verifica se o objeto colidido tem a tag "Plataform"
-            if (raio.collider.CompareTag("Plataform"))
-            {
-                // Define o objeto do jogador como filho da plataforma
-                transform.parent = raio.collider.transform;
-            }
-            else
-            {
-                // Se não for uma plataforma, remove a paternidade (se já estiver definida)
-                transform.parent = null;
-            }
+            noChao = true;
         }
         else
         {
-            // Se não estiver tocando em nada, remove a paternidade
+            noChao = false;
+        }
+        /*
+        isJumping = false;
+        animator.SetBool("IsJumping", false);
+
+        // Verifica se o objeto colidido tem a tag "Plataform"
+        if (raio.collider.CompareTag("Plataform"))
+        {
+            // Define o objeto do jogador como filho da plataforma
+            transform.parent = raio.collider.transform;
+        }
+        else
+        {
+            // Se não for uma plataforma, remove a paternidade (se já estiver definida)
             transform.parent = null;
         }
+    }
+    else
+    {
+        // Se não estiver tocando em nada, remove a paternidade
+        transform.parent = null;
+    }*/
     }
     
     

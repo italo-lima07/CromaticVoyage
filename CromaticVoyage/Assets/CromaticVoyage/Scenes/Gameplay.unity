@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 184174837}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlataformaDiagonal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 309593956}
   - component: {fileID: 309593955}
   - component: {fileID: 309593954}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlataformDisappearing
   m_TagString: Plataform
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 465619396}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PointB1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 494308087}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlataformaHorizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 542028184}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PointA2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +944,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 742143987}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlataformsMove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1107,6 +1107,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 813317703963514607, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
+      propertyPath: jumpForce
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 813317703963514607, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: attackArea3
       value: 
@@ -1362,7 +1366,7 @@ GameObject:
   - component: {fileID: 1425328389}
   - component: {fileID: 1425328388}
   - component: {fileID: 1425328387}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlataformMoveUp
   m_TagString: Plataform
   m_Icon: {fileID: 0}
@@ -1639,7 +1643,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1672062876}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PointB2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1758,7 +1762,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2087471973}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PointA1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1792,7 +1796,7 @@ GameObject:
   - component: {fileID: 2089894453}
   - component: {fileID: 2089894452}
   - component: {fileID: 2089894451}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlataformMove
   m_TagString: Plataform
   m_Icon: {fileID: 0}
