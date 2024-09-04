@@ -290,7 +290,7 @@ public class PlayerControllerV2 : MonoBehaviour
         Destroy(gameObject);
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Damage1"))
         {
@@ -306,6 +306,6 @@ public class PlayerControllerV2 : MonoBehaviour
             isOnDamageArea = false;
             Debug.Log("Jogador saiu da área de dano");
         }
-    }*/
+    }
 }
 
