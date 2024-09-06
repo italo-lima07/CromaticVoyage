@@ -8,8 +8,8 @@ public class PlayerControllerV2 : MonoBehaviour
 {
     [SerializeField] private float jumpForce;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private int maxHealth = 100; // Vida máxima do jogador
-    private int currentHealth; // Vida atual do jogador
+    [SerializeField] public int maxHealth = 100; // Vida máxima do jogador
+    public int currentHealth; // Vida atual do jogador
     private Rigidbody2D rig;
     private bool isJumping;
     public static bool IsAttack1Used = false;
@@ -36,6 +36,9 @@ public class PlayerControllerV2 : MonoBehaviour
     // Variáveis para o cooldown do Ataque 3
     [SerializeField] private float attack3Cooldown = 2f; // Tempo de cooldown em segundos
     private float attack3CooldownTimer = 0f; // Tempo restante de cooldown
+    public float knockbackForce = 10f; // Força do empurrão
+    private float invulnerableTime = 1.0f; // Tempo de invulnerabilidade (1 segundo)
+    private bool isInvulnerable = false;
 
     private bool noChao;
     void Start()
@@ -80,6 +83,14 @@ public class PlayerControllerV2 : MonoBehaviour
             }
             
         }
+        
+        // Lógica de dano ao colidir com objetos de "Damage1"
+        if (other.gameObject.CompareTag("Damage1"))
+        {
+            // Aplica dano e empurrão
+            TakeDamage(10); // Ajuste o valor do dano conforme necessário
+            ApplyKnockback(other.transform.position); // Aplica o empurrão baseado na posição da colisão
+        }
     }
 
     private void Update()
@@ -101,12 +112,6 @@ public class PlayerControllerV2 : MonoBehaviour
                 attackArea3.SetActive(false); // Desativa a área de ataque 3 após o tempo
                 animator.ResetTrigger("IsAtk");
             }
-        }
-        
-        // Aplicar dano se o jogador estiver em uma área de dano
-        if (isOnDamageArea)
-        {
-            TakeDamage(10); // Ajuste o valor do dano conforme necessário
         }
         
         // Atualiza o timer de cooldown para o Ataque 3
@@ -275,37 +280,55 @@ public class PlayerControllerV2 : MonoBehaviour
         Debug.DrawLine(startPos,startPos + dir * tamanho,Color.yellow,Time.deltaTime);
     }
     
+    // Método para aplicar dano
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
+        if (!isInvulnerable) // Aplica o dano somente se não estiver invulnerável
         {
-            Die();
+            currentHealth -= damage;
+            Debug.Log("Jogador recebeu dano: " + damage);
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+
+            StartCoroutine(InvulnerabilityCooldown()); // Inicia o período de invulnerabilidade
         }
     }
 
-    private void Die()
+    public void Die()
     {
+        Debug.Log("Player morreu");
+
+        // Verifica se o GameManager está inicializado
+        if (GameManager.Instance != null)
+        {
+            // Notifica o GameManager para carregar a cena GameOver
+            GameManager.Instance.PlayerDied();
+        }
+        else
+        {
+            Debug.LogWarning("GameManager não está inicializado.");
+        }
+
+        // Destrói o jogador
         Destroy(gameObject);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+    // Empurrão ao ser atingido
+    private void ApplyKnockback(Vector3 damageSourcePosition)
     {
-        if (collision.CompareTag("Damage1"))
-        {
-            isOnDamageArea = true;
-            Debug.Log("Jogador entrou na área de dano");
-        }
+        Vector2 knockbackDirection = (transform.position - damageSourcePosition).normalized; // Direção oposta à fonte do dano
+        rig.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse); // Aplica o empurrão
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    // Corrotina para invulnerabilidade temporária após receber dano
+    private IEnumerator InvulnerabilityCooldown()
     {
-        if (collision.CompareTag("Damage1"))
-        {
-            isOnDamageArea = false;
-            Debug.Log("Jogador saiu da área de dano");
-        }
+        isInvulnerable = true; // Torna o jogador invulnerável
+        yield return new WaitForSeconds(invulnerableTime); // Espera o tempo de invulnerabilidade
+        isInvulnerable = false; // Volta a ser vulnerável
     }
 }
 

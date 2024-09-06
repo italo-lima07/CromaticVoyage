@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/CromaticVoyage/Scenes/Splash.unity
     guid: 892b9adb2bd6d5548a072b66e934f8d5
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/GameOver.unity
+    guid: 50a38ec75feac664b823cb58590819b3
   m_configObjects: {}

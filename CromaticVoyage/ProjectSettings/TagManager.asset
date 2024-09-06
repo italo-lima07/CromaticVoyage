@@ -8,6 +8,7 @@ TagManager:
   - Plataform
   - Damage1
   - Bullet
+  - AguaEscura
   layers:
   - Default
   - TransparentFX
