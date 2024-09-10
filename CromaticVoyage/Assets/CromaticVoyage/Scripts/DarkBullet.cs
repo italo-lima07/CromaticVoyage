@@ -6,12 +6,11 @@ using UnityEngine;
 public class DarkBullet : MonoBehaviour
 {
     private GameObject player;
-
     private Rigidbody2D rig;
 
     public float force;
-
     private float timer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +21,7 @@ public class DarkBullet : MonoBehaviour
         rig.velocity = new Vector2(direction.x, direction.y).normalized * force;
 
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0,0,rot);
+        transform.rotation = Quaternion.Euler(0, 0, rot);
     }
 
     // Update is called once per frame
@@ -40,9 +39,18 @@ public class DarkBullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerControllerV2>().currentHealth -= 20;
+            PlayerControllerV2 playerController = other.gameObject.GetComponent<PlayerControllerV2>();
             
-            Destroy(gameObject);
+            // Reduz a vida do player
+            playerController.currentHealth -= 20;
+
+            // Verifica se a vida do player chegou a zero ou menos
+            if (playerController.currentHealth <= 0)
+            {
+                playerController.Die(); // Chama a função de morte do PlayerControllerV2
+            }
+
+            Destroy(gameObject); // Destrói o projétil após acertar o player
         }
     }
 }

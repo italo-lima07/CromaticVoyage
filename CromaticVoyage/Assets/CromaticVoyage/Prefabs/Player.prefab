@@ -358,15 +358,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ded58f640d51fb34c974726fe8a9a9a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 6
+  jumpForce: 8
   moveSpeed: 10
   maxHealth: 100
+  currentHealth: 0
   animator: {fileID: 6602675308818120325}
-  attackArea3: {fileID: 0}
+  attackArea3: {fileID: 4568830600541255812}
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 6254400184548144689}
   bulletSpeed: 10
   bulletLifetime: 2
+  attack3Cooldown: 10
+  knockbackForce: 20
 --- !u!95 &6602675308818120325
 Animator:
   serializedVersion: 5

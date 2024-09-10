@@ -9,9 +9,9 @@ public class AreaATK : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.GetComponent<Health>() != null)
+        if (collider.GetComponent<HealthEnemyTest>() != null)
         {
-            Health health = collider.GetComponent<Health>();
+            HealthEnemyTest health = collider.GetComponent<HealthEnemyTest>();
             health.Damage(damage);
         }
     }

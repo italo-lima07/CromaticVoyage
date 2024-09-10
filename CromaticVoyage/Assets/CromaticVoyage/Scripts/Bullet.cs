@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Health enemyHealth = collision.gameObject.GetComponent<Health>();
+        HealthEnemyTest enemyHealth = collision.gameObject.GetComponent<HealthEnemyTest>();
         if (enemyHealth != null)
         {
             enemyHealth.Damage(damageAmount); // Causa dano ao inimigo

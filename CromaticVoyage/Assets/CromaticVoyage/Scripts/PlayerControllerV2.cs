@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerControllerV2 : MonoBehaviour
 {
+    
     [SerializeField] private float jumpForce;
     [SerializeField] private float moveSpeed;
     [SerializeField] public int maxHealth = 100; // Vida máxima do jogador
@@ -13,6 +14,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private Rigidbody2D rig;
     private bool isJumping;
     public static bool IsAttack1Used = false;
+    
 
     [SerializeField] private Animator animator;
     
@@ -36,13 +38,20 @@ public class PlayerControllerV2 : MonoBehaviour
     // Variáveis para o cooldown do Ataque 3
     [SerializeField] private float attack3Cooldown = 2f; // Tempo de cooldown em segundos
     private float attack3CooldownTimer = 0f; // Tempo restante de cooldown
+    
     public float knockbackForce = 10f; // Força do empurrão
     private float invulnerableTime = 1.0f; // Tempo de invulnerabilidade (1 segundo)
     private bool isInvulnerable = false;
 
     private bool noChao;
+    
+    public float resistanceMultiplier = 1f;
+    [SerializeField] private GameObject shieldVisual; // ou public GameObject shieldVisual;
+    public bool isShielded = false;
+    private float shieldDuration = 5f; // duração do escudo
     void Start()
     {
+        shieldVisual.SetActive(false); // desativa o visual do escudo no início
         rig = GetComponent<Rigidbody2D>();
         //isJumping = false;
         playerCollider2D = GetComponent<BoxCollider2D>();
@@ -285,17 +294,38 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (!isInvulnerable) // Aplica o dano somente se não estiver invulnerável
         {
-            currentHealth -= damage;
+            if (isShielded) // Aplica resistência ao dano caso o escudo esteja ativo
+            {
+                damage = Mathf.FloorToInt(damage / resistanceMultiplier); // Reduz o dano com base no multiplicador
+                Debug.Log("Escudo ativo! Dano reduzido.");
+            }
+
+            currentHealth -= damage; // Aplica o dano ao jogador
             Debug.Log("Jogador recebeu dano: " + damage);
 
             if (currentHealth <= 0)
             {
-                Die();
+                Die(); // Executa a lógica de morte caso a vida chegue a zero
             }
 
             StartCoroutine(InvulnerabilityCooldown()); // Inicia o período de invulnerabilidade
         }
     }
+    
+    public void ActivateShield()
+    {
+        isShielded = true;
+        shieldVisual.SetActive(true); // ativa o visual do escudo
+        StartCoroutine(ShieldCooldown());
+    }
+
+    private IEnumerator ShieldCooldown()
+    {
+        yield return new WaitForSeconds(shieldDuration); // aguarda o tempo de duração do escudo
+        isShielded = false;
+        shieldVisual.SetActive(false); // desativa o visual do escudo
+    }
+
 
     public void Die()
     {
