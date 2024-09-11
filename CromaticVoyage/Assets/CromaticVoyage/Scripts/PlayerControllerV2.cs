@@ -294,11 +294,12 @@ public class PlayerControllerV2 : MonoBehaviour
     {
         if (!isInvulnerable) // Aplica o dano somente se não estiver invulnerável
         {
-            if (isShielded) // Aplica resistência ao dano caso o escudo esteja ativo
+            if (isShielded) // Aplica resistência ao dano se o escudo estiver ativo
             {
-                damage = Mathf.FloorToInt(damage / resistanceMultiplier); // Reduz o dano com base no multiplicador
-                Debug.Log("Escudo ativo! Dano reduzido.");
+                damage = 0;// Mathf.FloorToInt(damage * 0.1f); // Reduz o dano em 90%
+                Debug.Log("Escudo ativo! Dano reduzido para: " + damage);
             }
+            
 
             currentHealth -= damage; // Aplica o dano ao jogador
             Debug.Log("Jogador recebeu dano: " + damage);
@@ -311,11 +312,13 @@ public class PlayerControllerV2 : MonoBehaviour
             StartCoroutine(InvulnerabilityCooldown()); // Inicia o período de invulnerabilidade
         }
     }
+
     
     public void ActivateShield()
     {
         isShielded = true;
         shieldVisual.SetActive(true); // ativa o visual do escudo
+        Debug.Log("Escudo ativado!");
         StartCoroutine(ShieldCooldown());
     }
 

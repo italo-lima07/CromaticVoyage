@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
 {
     public Slider healthSlider;
     public Slider easeHealthSlider;
-    private float lerpSpeed = 0.05f;
+    private float lerpSpeed = 0.1f;
 
     private PlayerControllerV2 playerController;
 

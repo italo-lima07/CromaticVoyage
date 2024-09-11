@@ -42,14 +42,8 @@ public class DarkBullet : MonoBehaviour
             PlayerControllerV2 playerController = other.gameObject.GetComponent<PlayerControllerV2>();
             
             // Reduz a vida do player
-            playerController.currentHealth -= 20;
-
-            // Verifica se a vida do player chegou a zero ou menos
-            if (playerController.currentHealth <= 0)
-            {
-                playerController.Die(); // Chama a função de morte do PlayerControllerV2
-            }
-
+            playerController.TakeDamage(20);
+            
             Destroy(gameObject); // Destrói o projétil após acertar o player
         }
     }
