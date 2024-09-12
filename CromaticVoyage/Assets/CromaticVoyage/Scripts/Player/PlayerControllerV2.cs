@@ -14,6 +14,8 @@ public class PlayerControllerV2 : MonoBehaviour
     private Rigidbody2D rig;
     private bool isJumping;
     public static bool IsAttack1Used = false;
+    private float originalSpeed;
+    private Coroutine speedBoostCoroutine; // Referência para a Coroutine de Speed Boost
     
 
     [SerializeField] private Animator animator;
@@ -49,6 +51,8 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] private GameObject shieldVisual; // ou public GameObject shieldVisual;
     public bool isShielded = false;
     private float shieldDuration = 5f; // duração do escudo
+    
+    
     void Start()
     {
         shieldVisual.SetActive(false); // desativa o visual do escudo no início
@@ -63,9 +67,31 @@ public class PlayerControllerV2 : MonoBehaviour
 
         attackArea3 = transform.GetChild(1).gameObject; // Segundo filho do player
         attackArea3.SetActive(false); // Desativando por padrão
+        
+        originalSpeed = moveSpeed;
+    }
+    
+    public void ApplySpeedBoost(float increaseAmount, float duration)
+    {
+        // Se já houver um boost ativo, interrompa o anterior antes de iniciar um novo
+        if (speedBoostCoroutine != null)
+        {
+            StopCoroutine(speedBoostCoroutine);
+            moveSpeed = originalSpeed; // Garante que a velocidade volte ao normal
+        }
 
-        // Certifique-se de que o firePoint é atribuído corretamente via Inspector ou código
-        // firePoint não deve ser confundido com attackArea3
+        speedBoostCoroutine = StartCoroutine(SpeedBoost(increaseAmount, duration)); // Inicia o novo boost
+    }
+
+    private IEnumerator SpeedBoost(float increaseAmount, float duration)
+    {
+        moveSpeed *= increaseAmount; // Aumenta a velocidade
+        Debug.Log("Velocidade aumentada para: " + moveSpeed);
+
+        yield return new WaitForSeconds(duration); // Aguarda o tempo do boost
+
+        moveSpeed = originalSpeed; // Restaura a velocidade original
+        Debug.Log("Velocidade restaurada para: " + moveSpeed);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

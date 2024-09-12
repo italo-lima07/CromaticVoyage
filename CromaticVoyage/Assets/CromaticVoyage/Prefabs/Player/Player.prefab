@@ -370,6 +370,9 @@ MonoBehaviour:
   bulletLifetime: 2
   attack3Cooldown: 10
   knockbackForce: 20
+  resistanceMultiplier: 1
+  shieldVisual: {fileID: 0}
+  isShielded: 0
 --- !u!95 &6602675308818120325
 Animator:
   serializedVersion: 5
