@@ -9,6 +9,8 @@ TagManager:
   - Damage1
   - Bullet
   - AguaEscura
+  - PlayerAttack
+  - Projectile
   layers:
   - Default
   - TransparentFX

@@ -1,8 +1,9 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyPatrol : MonoBehaviour
 {
-    [Header ("Patrol Points")]
+    [Header("Patrol Points")]
     [SerializeField] private Transform leftEdge;
     [SerializeField] private Transform rightEdge;
 
@@ -21,10 +22,14 @@ public class EnemyPatrol : MonoBehaviour
     [Header("Enemy Animator")]
     [SerializeField] private Animator anim;
 
+    private bool isStunned = false;
+    private bool isDead = false;
+
     private void Awake()
     {
         initScale = enemy.localScale;
     }
+
     private void OnDisable()
     {
         anim.SetBool("MovingGSB", false);
@@ -32,6 +37,10 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Update()
     {
+        if (isDead || enemy == null) return;
+
+        if (isStunned) return;
+
         if (movingLeft)
         {
             if (enemy.position.x >= leftEdge.position.x)
@@ -53,7 +62,7 @@ public class EnemyPatrol : MonoBehaviour
         anim.SetBool("MovingGSB", false);
         idleTimer += Time.deltaTime;
 
-        if(idleTimer > idleDuration)
+        if (idleTimer > idleDuration)
             movingLeft = !movingLeft;
     }
 
@@ -62,12 +71,29 @@ public class EnemyPatrol : MonoBehaviour
         idleTimer = 0;
         anim.SetBool("MovingGSB", true);
 
-        //Make enemy face direction
-        enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction,
-            initScale.y, initScale.z);
+        enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * _direction, initScale.y, initScale.z);
 
-        //Move in that direction
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * _direction * speed,
             enemy.position.y, enemy.position.z);
+    }
+
+    public void Stun(float duration)
+    {
+        StartCoroutine(StunCoroutine(duration));
+    }
+
+    private IEnumerator StunCoroutine(float duration)
+    {
+        isStunned = true;
+        anim.SetBool("MovingGSB", false);
+        yield return new WaitForSeconds(duration);
+        isStunned = false;
+    }
+
+    public void Die()
+    {
+        isDead = true;
+        anim.SetBool("MovingGSB", false);
+        Destroy(gameObject);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int damageAmount = 10; // Valor do dano que a bala causa
+    public int damageAmount = 20; // Valor do dano que a bala causa
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

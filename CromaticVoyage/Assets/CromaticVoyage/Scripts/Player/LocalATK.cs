@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LocalATK : MonoBehaviour
 {
-    private int damage = 20;
+    private int damage = 30;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {

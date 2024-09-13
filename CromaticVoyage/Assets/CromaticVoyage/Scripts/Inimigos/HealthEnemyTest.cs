@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class HealthEnemyTest : MonoBehaviour
 {
-    [SerializeField] private int health = 100;
-    private int MAX_HEALTH = 100;
+    [SerializeField] private int health = 50;
+    private int MAX_HEALTH = 50;
 
     // Referência para o Animator
     private Animator animator;
@@ -14,12 +13,6 @@ public class HealthEnemyTest : MonoBehaviour
     {
         // Inicializa a referência ao Animator
         animator = GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void Damage(int amount)
@@ -40,29 +33,17 @@ public class HealthEnemyTest : MonoBehaviour
         }
     }
 
-    public void Heal(int amount)
-    {
-        if (amount < 0)
-        {
-            throw new System.ArgumentOutOfRangeException("Cannot have negative healing");
-        }
-
-        bool wouldBeOverMaxHealth = health + amount > MAX_HEALTH;
-
-        if (wouldBeOverMaxHealth)
-        {
-            this.health = MAX_HEALTH;
-        }
-        else
-        {
-            this.health += amount;
-        }
-    }
-
     private void Die()
     {
         // Toca a animação de morte
         animator.SetTrigger("GSBdie");
+
+        // Desativa o EnemyPatrol se ele existir
+        EnemyPatrol enemyPatrol = GetComponentInParent<EnemyPatrol>();
+        if (enemyPatrol != null)
+        {
+            enemyPatrol.enabled = false;
+        }
 
         // Aguarda o término da animação antes de destruir o inimigo
         StartCoroutine(WaitForDeathAnimation());
@@ -70,11 +51,23 @@ public class HealthEnemyTest : MonoBehaviour
 
     private IEnumerator WaitForDeathAnimation()
     {
-        // Assume que a animação de morte tem o tempo de duração adequado
-        // Espera o tempo da animação antes de destruir o objeto
+        // Espera o tempo da animação de morte
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
         // Destrói o inimigo após a animação de morte
         Destroy(gameObject);
+    }
+
+    // Método que detecta colisões com qualquer ataque
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Verifica se colidiu com um objeto com a tag "PlayerAttack" ou "Projectile"
+        if (collision.CompareTag("PlayerAttack") || collision.CompareTag("Projectile"))
+        {
+            // Pode ajustar a quantidade de dano com base no tipo de ataque
+            int damageAmount = 10; // Coloque o valor adequado aqui
+
+            Damage(damageAmount);
+        }
     }
 }

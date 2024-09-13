@@ -26,6 +26,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private float timeToAttack = 0.25f;
     private float timer = 0f;
     private bool isOnDamageArea = false;
+    public static event Action OnAttack1Used;
 
     private Stack<Command> _playerCommands;
     private Vector2 _moveDirection;
@@ -207,6 +208,7 @@ public class PlayerControllerV2 : MonoBehaviour
                 AttackLogic(attackArea);
                 Debug.Log("Ataque 1 executado");
                 IsAttack1Used = true;
+                //OnAttack1Used?.Invoke();
             }
             else if (Input.GetKeyDown(KeyCode.K))
             {

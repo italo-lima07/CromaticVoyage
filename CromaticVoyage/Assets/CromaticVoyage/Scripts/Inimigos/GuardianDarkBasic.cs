@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GuardianDarkBasic : MonoBehaviour
 {
-    [Header ("Attack Parameters")]
+    [Header("Attack Parameters")]
     [SerializeField] private float attackCooldown;
     [SerializeField] private float range;
     [SerializeField] private int damage;
@@ -15,10 +15,9 @@ public class GuardianDarkBasic : MonoBehaviour
     [SerializeField] private LayerMask playerLayer;
     private float cooldownTimer = Mathf.Infinity;
 
-    //References
     private Animator anim;
     private EnemyPatrol enemyPatrol;
-    private PlayerControllerV2 playerController; // Referência ao script de controle do jogador
+    private PlayerControllerV2 playerController;
 
     private void Awake()
     {
@@ -30,13 +29,13 @@ public class GuardianDarkBasic : MonoBehaviour
     {
         cooldownTimer += Time.deltaTime;
 
-        // Verifica se o jogador está à vista e realiza o ataque
         if (PlayerInSight())
         {
             if (cooldownTimer >= attackCooldown)
             {
                 cooldownTimer = 0;
                 anim.SetTrigger("GSBatk");
+                DamagePlayer();
             }
         }
 
@@ -51,17 +50,15 @@ public class GuardianDarkBasic : MonoBehaviour
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
             0, Vector2.left, 0, playerLayer);
 
-        // Verifica se o jogador foi atingido
         if (hit.collider != null)
         {
             playerController = hit.transform.GetComponent<PlayerControllerV2>();
-            return playerController != null; // Confirma que o jogador foi encontrado
+            return playerController != null;
         }
 
         return false;
     }
 
-    // Desenha a área do raio para depuração
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -69,12 +66,11 @@ public class GuardianDarkBasic : MonoBehaviour
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
 
-    // Aplica dano ao jogador quando o ataque é realizado
     private void DamagePlayer()
     {
         if (PlayerInSight() && playerController != null)
         {
-            playerController.TakeDamage(damage); // Aplica dano usando o método do jogador
+            playerController.TakeDamage(damage);
         }
     }
 }
