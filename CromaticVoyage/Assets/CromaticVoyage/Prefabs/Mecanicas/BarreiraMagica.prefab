@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8264638117703984061}
   - component: {fileID: 3976043063151469918}
   - component: {fileID: 7756436985726393173}
-  - component: {fileID: 210520364399089777}
+  - component: {fileID: 349803572543123481}
   m_Layer: 6
   m_Name: BarreiraMagica
   m_TagString: Ground
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2639720209680414063}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.70141864, w: 0.7127496}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7014195, w: 0.7127487}
   m_LocalPosition: {x: -17.8092, y: -0.93988764, z: 4.5931187}
   m_LocalScale: {x: 4.4542565, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &210520364399089777
+--- !u!114 &349803572543123481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

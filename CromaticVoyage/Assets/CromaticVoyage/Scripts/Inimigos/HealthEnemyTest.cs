@@ -8,6 +8,10 @@ public class HealthEnemyTest : MonoBehaviour
 
     // Referência para o Animator
     private Animator animator;
+    
+    [Header("Drop Settings")]
+    [SerializeField] private GameObject healthPotionPrefab; // Prefab da poção de cura
+    [SerializeField] private float dropChance = 0.25f; // 25% de chance de dropar
 
     private void Start()
     {
@@ -54,8 +58,21 @@ public class HealthEnemyTest : MonoBehaviour
         // Espera o tempo da animação de morte
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
+        // Tenta spawnar a poção de cura
+        TrySpawnHealthPotion();
+
         // Destrói o inimigo após a animação de morte
         Destroy(gameObject);
+    }
+
+    private void TrySpawnHealthPotion()
+    {
+        // Calcula aleatoriamente se a poção será dropada
+        if (Random.value <= dropChance)
+        {
+            // Spawna a poção de cura na posição atual do inimigo
+            Instantiate(healthPotionPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     // Método que detecta colisões com qualquer ataque
