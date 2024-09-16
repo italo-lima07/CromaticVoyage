@@ -9,8 +9,12 @@ TagManager:
   - Damage1
   - Bullet
   - AguaEscura
-  - PlayerAttack
   - Projectile
+  - AreaATK
+  - LocalATK
+  - BulletMG
+  - MiniBoss1
+  - MiniBoss2
   layers:
   - Default
   - TransparentFX

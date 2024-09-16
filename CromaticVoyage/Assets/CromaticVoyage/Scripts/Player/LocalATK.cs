@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LocalATK : MonoBehaviour
 {
-    private int damage = 30;
+    [SerializeField] private int damage = 30;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.GetComponent<HealthEnemyTest>() != null)
+        HealthEnemyTest health = collider.GetComponent<HealthEnemyTest>();
+        if (health != null)
         {
-            HealthEnemyTest health = collider.GetComponent<HealthEnemyTest>();
-            health.Damage(damage);
+            // Passa a tag deste ataque para o inimigo, junto com o dano
+            health.Damage(damage, gameObject.tag);
         }
     }
 }

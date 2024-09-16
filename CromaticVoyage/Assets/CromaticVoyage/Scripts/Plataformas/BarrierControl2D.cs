@@ -32,7 +32,7 @@ public class BarrierControl2D : MonoBehaviour
     {
         Debug.Log("Trigger Entered: " + other.gameObject.name); // Log para verificar o trigger
 
-        if (other.CompareTag("PlayerAttack"))
+        if (other.CompareTag("AreaATK"))
         {
             ToggleBarrier();
         }

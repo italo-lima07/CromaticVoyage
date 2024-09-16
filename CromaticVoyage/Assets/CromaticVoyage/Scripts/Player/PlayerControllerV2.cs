@@ -6,6 +6,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerControllerV2 : MonoBehaviour
 {
+    public bool isAttack2Unlocked = false;
+    public bool isAttack3Unlocked = false;
+
+    [Header("Unlock Settings")]
+    public string attack2UnlockerTag = "MiniBoss1";
+    public string attack3UnlockerTag = "MiniBoss2";
     
     [SerializeField] private float jumpForce;
     [SerializeField] private float moveSpeed;
@@ -35,12 +41,16 @@ public class PlayerControllerV2 : MonoBehaviour
     // Variáveis para o disparo do projétil
     [SerializeField] private GameObject bulletPrefab; // Prefab do projétil
     [SerializeField] private Transform firePoint; // Ponto de saída do projétil
-    [SerializeField] private float bulletSpeed = 10f; // Velocidade do projétil
+    [SerializeField] private float bulletSpeed = 30f; // Velocidade do projétil
     [SerializeField] private float bulletLifetime = 2f; // Tempo de vida do projétil antes de se autodestruir
 
     // Variáveis para o cooldown do Ataque 3
     [SerializeField] private float attack3Cooldown = 2f; // Tempo de cooldown em segundos
     private float attack3CooldownTimer = 0f; // Tempo restante de cooldown
+    
+    // Variáveis para o cooldown do Ataque 2
+    [SerializeField] private float attack2Cooldown = 2f; // Tempo de cooldown em segundos
+    private float attack2CooldownTimer = 0f; // Tempo restante de cooldown
     
     public float knockbackForce = 10f; // Força do empurrão
     private float invulnerableTime = 1.0f; // Tempo de invulnerabilidade (1 segundo)
@@ -56,6 +66,12 @@ public class PlayerControllerV2 : MonoBehaviour
     
     void Start()
     {
+        // Assinamos o evento de morte do inimigo
+        foreach (HealthBoss enemy in FindObjectsOfType<HealthBoss>())
+        {
+            enemy.OnEnemyDefeated += UnlockAttack;
+        }
+        
         shieldVisual.SetActive(false); // desativa o visual do escudo no início
         rig = GetComponent<Rigidbody2D>();
         //isJumping = false;
@@ -150,10 +166,31 @@ public class PlayerControllerV2 : MonoBehaviour
             }
         }
         
+        // Atualiza o timer de cooldown para o Ataque 2
+        if (attack2CooldownTimer > 0)
+        {
+            attack2CooldownTimer -= Time.deltaTime;
+        }
+        
         // Atualiza o timer de cooldown para o Ataque 3
         if (attack3CooldownTimer > 0)
         {
             attack3CooldownTimer -= Time.deltaTime;
+        }
+        
+    }
+    
+    private void UnlockAttack(string enemyTag)
+    {
+        if (enemyTag == attack2UnlockerTag)
+        {
+            isAttack2Unlocked = true;
+            Debug.Log("Ataque 2 desbloqueado!");
+        }
+        else if (enemyTag == attack3UnlockerTag)
+        {
+            isAttack3Unlocked = true;
+            Debug.Log("Ataque 3 desbloqueado!");
         }
     }
 
@@ -210,12 +247,24 @@ public class PlayerControllerV2 : MonoBehaviour
                 IsAttack1Used = true;
                 //OnAttack1Used?.Invoke();
             }
-            else if (Input.GetKeyDown(KeyCode.K))
+            else if (Input.GetKeyDown(KeyCode.K) && isAttack2Unlocked)
             {
-                Shoot();
-                Debug.Log("Ataque 2 executado");
+                // Verifica se o cooldown do Ataque 2 acabou
+                if (attack2CooldownTimer <= 0)
+                {
+                    Shoot();
+                    Debug.Log("Ataque 2 executado");
+
+                    // Reseta o cooldown do Ataque 2 após o disparo
+                    attack2CooldownTimer = attack2Cooldown;
+                }
+                else
+                {
+                    Debug.Log("Ataque 2 ainda está em cooldown");
+                }
+                
             }
-            else if (Input.GetKeyDown(KeyCode.L))
+            else if (Input.GetKeyDown(KeyCode.L) && isAttack3Unlocked)
             {
                 if (attack3CooldownTimer <= 0)
                 {

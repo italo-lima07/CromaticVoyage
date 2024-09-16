@@ -1,20 +1,28 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public int damageAmount = 20; // Valor do dano que a bala causa
+    public int damage = 20; // Valor do dano que a bala causa
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        HealthEnemyTest enemyHealth = collision.gameObject.GetComponent<HealthEnemyTest>();
+        // Primeiro tenta pegar o componente HealthEnemyTest
+        HealthEnemyTest enemyHealth = collider.GetComponent<HealthEnemyTest>();
         if (enemyHealth != null)
         {
-            enemyHealth.Damage(damageAmount); // Causa dano ao inimigo
+            // Causa dano ao inimigo, passando a tag da bala
+            enemyHealth.Damage(damage, gameObject.tag);
         }
-        Destroy(gameObject); // Destroi a bala após a colisão
+
+        // Agora tenta pegar o componente HealthBoss
+        HealthBoss healthBoss = collider.GetComponent<HealthBoss>();
+        if (healthBoss != null)
+        {
+            // Causa dano ao Boss
+            healthBoss.TakeDamage(damage, gameObject.tag);
+        }
+
+        // Destrói a bala após colidir
+        Destroy(gameObject);
     }
 }
-

@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
-public class HealthEnemyTest : MonoBehaviour
+public class HealthBoss : MonoBehaviour
 {
-    [SerializeField] private int health = 50;
-    private int MAX_HEALTH = 50;
+    [SerializeField] private int health = 160;
+    private int maxHealth = 160;
+    
+    public Action<string> OnEnemyDefeated;
 
     // Referência para o Animator
     private Animator animator;
@@ -17,15 +20,17 @@ public class HealthEnemyTest : MonoBehaviour
     [Header("Damage Settings")]
     [SerializeField] private List<string> damageTags; // Lista de tags que podem causar dano neste inimigo
 
-    
+    [SerializeField] private BarraDeVidaBosses _healthBar;
     private void Start()
     {
+        _healthBar.UpdateHealthBar(health, maxHealth);
         // Inicializa a referência ao Animator
         animator = GetComponent<Animator>();
+        _healthBar = GetComponentInChildren<BarraDeVidaBosses>();
         
     }
 
-    public void Damage(int amount, string attackTag)
+    public void TakeDamage(int amount, string attackTag)
     {
         // Verifica se a tag do ataque é permitida para este inimigo
         if (!damageTags.Contains(attackTag))
@@ -42,6 +47,7 @@ public class HealthEnemyTest : MonoBehaviour
         animator.SetTrigger("GSBhit");
 
         this.health -= amount;
+        _healthBar.UpdateHealthBar(health, maxHealth);
 
         if (health <= 0)
         {
@@ -51,6 +57,7 @@ public class HealthEnemyTest : MonoBehaviour
 
     private void Die()
     {
+        OnEnemyDefeated?.Invoke(gameObject.tag);
         // Toca a animação de morte
         animator.SetTrigger("GSBdie");
 
@@ -80,7 +87,7 @@ public class HealthEnemyTest : MonoBehaviour
     private void TrySpawnHealthPotion()
     {
         // Calcula aleatoriamente se a poção será dropada
-        if (Random.value <= dropChance)
+        if (UnityEngine.Random.value <= dropChance)
         {
             // Spawna a poção de cura na posição atual do inimigo
             Instantiate(healthPotionPrefab, transform.position, Quaternion.identity);
@@ -95,7 +102,7 @@ public class HealthEnemyTest : MonoBehaviour
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             if (bullet != null)
             {
-                Damage(bullet.damage, collision.gameObject.tag); // Passa a tag da bala
+                TakeDamage(bullet.damage, collision.gameObject.tag); // Passa a tag da bala
             }
         }
     }
