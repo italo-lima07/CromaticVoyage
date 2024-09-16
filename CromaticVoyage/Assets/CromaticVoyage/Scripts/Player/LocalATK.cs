@@ -12,5 +12,12 @@ public class LocalATK : MonoBehaviour
             // Passa a tag deste ataque para o inimigo, junto com o dano
             health.Damage(damage, gameObject.tag);
         }
+        
+        MalachaiHealth healthMalachai = collider.GetComponent<MalachaiHealth>();
+        if (healthMalachai != null)
+        {
+            // Passa a tag deste ataque para o inimigo, junto com o dano
+            healthMalachai.TakeDamage(damage, gameObject.tag);
+        }
     }
 }
