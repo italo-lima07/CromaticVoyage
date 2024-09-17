@@ -201,7 +201,8 @@ public class PlayerControllerV2 : MonoBehaviour
             isJumping = true;
             animator.SetBool("IsJumping", true);
             rig.AddForce(new Vector2(0, jumpForce * 2), ForceMode2D.Impulse);
-
+            AudioObserver.OnPlaySfxEvent("pulo");
+            ParticleObserver.OnParticleSpawnEvent(transform.position);
             // Inicia uma corrotina para aguardar o final do pulo
            // EndJump();
         }
