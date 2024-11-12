@@ -2795,6 +2795,30 @@ PrefabInstance:
       propertyPath: m_TagString
       value: LocalATK
       objectReference: {fileID: 0}
+    - target: {fileID: 5395341135037622191, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
+      propertyPath: m_Size.x
+      value: 0.49318695
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395341135037622191, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0051332
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395341135037622191, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0000038146973
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395341135037622191, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.002566576
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395341135037622191, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395341135037622191, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5492718442113124072, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2807,6 +2831,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6056379580809170379, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9187f07043236964b9530a1f498d05d4, type: 3}
     - target: {fileID: 8012897628097891043, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 84.76
@@ -3907,6 +3935,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76154817cbbc36d42a348bb09b05f66a, type: 3}
+--- !u!1 &1515918729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1515918730}
+  m_Layer: 0
+  m_Name: fds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1515918730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515918729}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 85.49749, y: 5.446006, z: 0.076122865}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1574820842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6768,3 +6827,4 @@ SceneRoots:
   - {fileID: 1889761336222185524}
   - {fileID: 6230501666284692588}
   - {fileID: 658677454119376100}
+  - {fileID: 1515918730}
