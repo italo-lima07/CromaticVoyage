@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 7340070946814200167}
-  clipPulo: {fileID: 8300000, guid: ac04c7ed50b70984cba222996df5a61b, type: 3}
+  clipPulo: {fileID: 8300000, guid: 2059035362e09054591e7a8b5d498a85, type: 3}
+  "clipPo\xE7\xE3o": {fileID: 8300000, guid: 5597603620bfcf6419d116d47b4f2551, type: 3}
 --- !u!82 &7340070946814200167
 AudioSource:
   m_ObjectHideFlags: 0

@@ -57,3 +57,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fde5bc48ceaa3d4b8a33e60d695c076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "prefabFuma\xE7aaa": {fileID: 2198736885016790154, guid: 2f52746e091489c4f97c976cb51bb333, type: 3}
