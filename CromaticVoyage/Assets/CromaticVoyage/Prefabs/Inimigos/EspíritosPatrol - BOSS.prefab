@@ -316,9 +316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 4442428656975872715}
-  camere: {fileID: 0}
-  target: {fileID: 0}
-  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &4660212926195323971
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,7 +522,7 @@ GameObject:
   - component: {fileID: 4853565984244995469}
   m_Layer: 0
   m_Name: "Esp\xEDritodaFlorestaSombria - BOSS"
-  m_TagString: Untagged
+  m_TagString: MiniBoss1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -539,8 +536,8 @@ Transform:
   m_GameObject: {fileID: 7912464169978464660}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 57.9141, y: -2.7617, z: 0.0023892405}
-  m_LocalScale: {x: 2.7306447, y: 2.8245018, z: 1}
+  m_LocalPosition: {x: 57.6858, y: -2.8949, z: 0.0023892405}
+  m_LocalScale: {x: 2.2669814, y: 2.5539145, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4029562101210833388}
