@@ -24,11 +24,11 @@ public class GuardianDark : MonoBehaviour
         
         float distance = Vector2.Distance(transform.position, player.transform.position);
         
-        if (distance < 10)
+        if (distance < 7)
         {
             timer += Time.deltaTime;
             
-            if (timer > 1)
+            if (timer > 1.5)
             {
                 timer = 0;
                 shoot();
