@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/CromaticVoyage/Scenes/MainMenu.unity
     guid: 8014b5b369c3ddb4080082614d690288
   - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Tutorial.unity
+    guid: 9313750238aba36478f7d2ba69907637
+  - enabled: 1
     path: Assets/CromaticVoyage/Scenes/Fase1.unity
     guid: 3f2fb0580c00c4949bb983f1e788b93b
   - enabled: 1

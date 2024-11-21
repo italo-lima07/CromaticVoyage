@@ -18,7 +18,7 @@ public class PlayerControllerV2 : MonoBehaviour
     [SerializeField] public int maxHealth = 100; // Vida máxima do jogador
     public int currentHealth; // Vida atual do jogador
     private Rigidbody2D rig;
-    private bool isJumping;
+    public bool isJumping;
     public static bool IsAttack1Used = false;
     private float originalSpeed;
     private Coroutine speedBoostCoroutine; // Referência para a Coroutine de Speed Boost
