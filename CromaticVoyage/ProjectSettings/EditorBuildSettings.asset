@@ -9,17 +9,26 @@ EditorBuildSettings:
     path: Assets/CromaticVoyage/Scenes/Initialization.unity
     guid: 835c28a891e5f594fa9d9ea18a39740a
   - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Splash.unity
+    guid: 892b9adb2bd6d5548a072b66e934f8d5
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/MainMenu.unity
+    guid: 8014b5b369c3ddb4080082614d690288
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase1.unity
+    guid: 3f2fb0580c00c4949bb983f1e788b93b
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase2.unity
+    guid: 2e3c431eda9a1ea4c949977bbc7dfc4f
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase3.unity
+    guid: d1bba39ec847bb149a08d53a469c3525
+  - enabled: 1
     path: Assets/CromaticVoyage/Scenes/Gameplay.unity
     guid: 51eddce6497188447ac97ce16841eacc
   - enabled: 1
     path: Assets/CromaticVoyage/Scenes/GUI.unity
     guid: 0ee3411fdc9ac974fa44e07f79760e97
-  - enabled: 1
-    path: Assets/CromaticVoyage/Scenes/MainMenu.unity
-    guid: 8014b5b369c3ddb4080082614d690288
-  - enabled: 1
-    path: Assets/CromaticVoyage/Scenes/Splash.unity
-    guid: 892b9adb2bd6d5548a072b66e934f8d5
   - enabled: 1
     path: Assets/CromaticVoyage/Scenes/GameOver.unity
     guid: 50a38ec75feac664b823cb58590819b3

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8112449422486089696}
   - component: {fileID: 7176479717265762434}
   - component: {fileID: -5569358744071758810}
+  - component: {fileID: 6845478798750943722}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -58,3 +59,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   "prefabFuma\xE7aaa": {fileID: 2198736885016790154, guid: 2f52746e091489c4f97c976cb51bb333, type: 3}
+--- !u!114 &6845478798750943722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8491101275482649627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d83b5a478618e4e9167032cfef5175, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}

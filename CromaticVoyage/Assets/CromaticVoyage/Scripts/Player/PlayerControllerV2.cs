@@ -147,6 +147,7 @@ public class PlayerControllerV2 : MonoBehaviour
 
     private void Update()
     {
+        
         animator.SetFloat("Speed", Mathf.Abs(_moveDirection.x));
         //Escaneando();
         Jump();
