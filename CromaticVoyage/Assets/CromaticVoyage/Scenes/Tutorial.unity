@@ -1278,8 +1278,9 @@ GameObject:
   - component: {fileID: 1314344430}
   - component: {fileID: 1314344429}
   - component: {fileID: 1314344428}
+  - component: {fileID: 1314344431}
   m_Layer: 0
-  m_Name: fase1
+  m_Name: cutscene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1391,12 +1392,25 @@ Transform:
   m_GameObject: {fileID: 1314344427}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.9999976, w: 0.0021884895}
-  m_LocalPosition: {x: 46.49, y: 0.63, z: 0}
+  m_LocalPosition: {x: 46.492, y: 1.111, z: 0}
   m_LocalScale: {x: 3.0948, y: 3.0948, z: 3.0948}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 179.749}
+--- !u!114 &1314344431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314344427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5c1f3ed54a7b14f87308c3f2368617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cenaParaCarregar: CutsceneInicial
 --- !u!1001 &1604075129
 PrefabInstance:
   m_ObjectHideFlags: 0

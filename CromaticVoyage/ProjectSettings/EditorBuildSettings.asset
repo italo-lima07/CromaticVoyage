@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/CromaticVoyage/Scenes/Fase3.unity
     guid: d1bba39ec847bb149a08d53a469c3525
   - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/CutSceneInicial.unity
+    guid: 16eadbd7820f0f74b9009c268a201728
+  - enabled: 1
     path: Assets/CromaticVoyage/Scenes/Gameplay.unity
     guid: 51eddce6497188447ac97ce16841eacc
   - enabled: 1
