@@ -1410,7 +1410,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5c1f3ed54a7b14f87308c3f2368617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cenaParaCarregar: CutsceneInicial
 --- !u!1001 &1604075129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6533,6 +6532,18 @@ PrefabInstance:
     - target: {fileID: 813317703963514607, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: moveSpeed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 813317703963514607, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
+      propertyPath: bulletLifetime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 813317703963514607, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
+      propertyPath: attack2Cooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 813317703963514607, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
+      propertyPath: isAttack3Unlocked
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5492718442113124072, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_Name

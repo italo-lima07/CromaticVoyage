@@ -12,6 +12,9 @@ public class Bullet : MonoBehaviour
         {
             // Causa dano ao inimigo, passando a tag da bala
             enemyHealth.Damage(damage, gameObject.tag);
+            
+            // Destrói a bala após colidir
+            Destroy(gameObject);
         }
 
         // Agora tenta pegar o componente HealthBoss
@@ -20,6 +23,9 @@ public class Bullet : MonoBehaviour
         {
             // Causa dano ao Boss
             healthBoss.TakeDamage(damage, gameObject.tag);
+            
+            // Destrói a bala após colidir
+            Destroy(gameObject);
         }
         
         MalachaiHealth healthMalachai = collider.GetComponent<MalachaiHealth>();
@@ -27,9 +33,9 @@ public class Bullet : MonoBehaviour
         {
             // Passa o dano para o script HealthBoss
             healthMalachai.TakeDamage(damage, gameObject.tag);
+            
+            // Destrói a bala após colidir
+            Destroy(gameObject);
         }
-
-        // Destrói a bala após colidir
-        Destroy(gameObject);
     }
 }
