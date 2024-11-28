@@ -15,6 +15,7 @@ TagManager:
   - BulletMG
   - MiniBoss1
   - MiniBoss2
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
