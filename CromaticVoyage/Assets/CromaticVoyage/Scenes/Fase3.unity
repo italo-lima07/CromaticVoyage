@@ -838,6 +838,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 50.39
       objectReference: {fileID: 0}
+    - target: {fileID: 3172825786362479370, guid: d5dc34a1fd6d4894987b1a8b27358215, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7300339845154423634, guid: d5dc34a1fd6d4894987b1a8b27358215, type: 3}
       propertyPath: m_LocalPosition.x
       value: 257.83
@@ -3131,7 +3135,7 @@ Transform:
   m_GameObject: {fileID: 462719930}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.1, y: -1.8, z: -6.29}
+  m_LocalPosition: {x: 6.4, y: -2.3, z: -6.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5538,6 +5542,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1878079087}
     m_Modifications:
+    - target: {fileID: 3190650911752619591, guid: c89a226c126094542a1848d4b2b3938f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4599720960975643161, guid: c89a226c126094542a1848d4b2b3938f, type: 3}
       propertyPath: m_Name
       value: GuardianPatrol
@@ -50798,6 +50806,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4625287219662118087, guid: 68008163b71257845848e742d1f9841a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5025735907134239066, guid: 68008163b71257845848e742d1f9841a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 56.090343
@@ -50837,6 +50849,10 @@ PrefabInstance:
     - target: {fileID: 5025735907134239066, guid: 68008163b71257845848e742d1f9841a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.294
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017414126859690903, guid: 68008163b71257845848e742d1f9841a, type: 3}
+      propertyPath: duration
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6499169219111164786, guid: 68008163b71257845848e742d1f9841a, type: 3}
       propertyPath: m_Name
@@ -52999,6 +53015,10 @@ PrefabInstance:
     - target: {fileID: 4994199128896277649, guid: bf2194de917649e4d91907c0c7f0ac84, type: 3}
       propertyPath: m_Name
       value: "Po\xE7\xE3o do escudo"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6478845573485784337, guid: bf2194de917649e4d91907c0c7f0ac84, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -55640,7 +55660,7 @@ Transform:
   m_GameObject: {fileID: 1710848058}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.1, y: -1.8, z: -6.29}
+  m_LocalPosition: {x: 6.4, y: -2.3, z: -6.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -58377,11 +58397,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8012897628097891043, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.1
+      value: 6.4
       objectReference: {fileID: 0}
     - target: {fileID: 8012897628097891043, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 8012897628097891043, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_LocalPosition.z
