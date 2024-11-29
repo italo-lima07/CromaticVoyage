@@ -18,23 +18,65 @@ EditorBuildSettings:
     path: Assets/CromaticVoyage/Scenes/Tutorial.unity
     guid: 9313750238aba36478f7d2ba69907637
   - enabled: 1
-    path: Assets/CromaticVoyage/Scenes/Fase1.unity
+    path: Assets/CromaticVoyage/Scenes/Fase1/Fase1.unity
     guid: 3f2fb0580c00c4949bb983f1e788b93b
   - enabled: 1
-    path: Assets/CromaticVoyage/Scenes/Fase2.unity
+    path: Assets/CromaticVoyage/Scenes/Fase1/Fase1 part2.unity
+    guid: 90dc56f48ac431c4d924eb62f25eff81
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase1/Fase1 part3.unity
+    guid: 40c7ceae2c1f1f346ad036f9ce23684d
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase1/Fase1 part4.unity
+    guid: 93cdcb6bdfa3c554c837b9927341ab47
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase1/Fase1 part5.unity
+    guid: fa009a9dbe499bd42b65ce7272ad1328
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase1/Fase1 part6.unity
+    guid: 5e114e9e5c4089c4599db77c8d6940b7
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase1/Fase1 part7.unity
+    guid: dd0912393ca652b4b9dd2331aaa1133d
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase2/Fase2.unity
     guid: 2e3c431eda9a1ea4c949977bbc7dfc4f
   - enabled: 1
-    path: Assets/CromaticVoyage/Scenes/Fase3.unity
+    path: Assets/CromaticVoyage/Scenes/Fase2/Fase2 part2.unity
+    guid: 738edb2bd009e9d4aa64f0368aa02fc6
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase2/Fase2 part3.unity
+    guid: 249e469d145f4e645bd8ef5166a867d8
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase2/Fase2 part4.unity
+    guid: 342f6f6ca6aa64f4890a68ffa0f4739a
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase2/Fase2 part5.unity
+    guid: 482a1497cf76a47418de7a5c0a24c1cd
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase3/Fase3.unity
     guid: d1bba39ec847bb149a08d53a469c3525
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase3/Fase3 part2.unity
+    guid: 158500b14ec292b4f98eaf4f926798fa
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase3/Fase3 part3.unity
+    guid: 270db2e7aa512c449b696be38b2f8702
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase3/Fase3 part4.unity
+    guid: f9c48a922f447e9459e4e291c37c4898
+  - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/Fase3/Fase3 part5.unity
+    guid: c2bda9f903fe611498cd5723f85fe012
   - enabled: 1
     path: Assets/CromaticVoyage/Scenes/CutSceneInicial.unity
     guid: 16eadbd7820f0f74b9009c268a201728
   - enabled: 1
+    path: Assets/CromaticVoyage/Scenes/CutSceneFinal.unity
+    guid: f21f342492a25954bb2c7349f9165af5
+  - enabled: 1
     path: Assets/CromaticVoyage/Scenes/Gameplay.unity
     guid: 51eddce6497188447ac97ce16841eacc
-  - enabled: 1
-    path: Assets/CromaticVoyage/Scenes/GUI.unity
-    guid: 0ee3411fdc9ac974fa44e07f79760e97
   - enabled: 1
     path: Assets/CromaticVoyage/Scenes/GameOver.unity
     guid: 50a38ec75feac664b823cb58590819b3

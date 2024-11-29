@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
-
+using TMPro;
 public class HealthBoss : MonoBehaviour
 {
     [SerializeField] private int health = 160;
@@ -21,12 +21,22 @@ public class HealthBoss : MonoBehaviour
     [SerializeField] private List<string> damageTags; // Lista de tags que podem causar dano neste inimigo
 
     [SerializeField] private BarraDeVidaBosses _healthBar;
+    
+    [Header("Death Message Settings")]
+    [SerializeField] private TextMeshProUGUI deathMessageText; // Referência ao texto de mensagem
+    [SerializeField] private string deathMessage = "Você derrotou o Malachai! Agora dê um ataque básico, apertando J."; // Texto exibido ao derrotar o inimigo
+    [SerializeField] private float messageDuration = 2f; // Duração da exibição do texto
     private void Start()
     {
         _healthBar.UpdateHealthBar(health, maxHealth);
         // Inicializa a referência ao Animator
         animator = GetComponent<Animator>();
         _healthBar = GetComponentInChildren<BarraDeVidaBosses>();
+        
+        if (deathMessageText != null)
+        {
+            deathMessageText.gameObject.SetActive(false); // Garante que o texto comece invisível
+        }
         
     }
 
@@ -45,6 +55,9 @@ public class HealthBoss : MonoBehaviour
 
         // Toca a animação de hit
         animator.SetTrigger("GSBhit");
+        
+        // Tocar o som de dano "hitenemy"
+        AudioObserver.OnPlaySfxEvent("hitenemy");
 
         this.health -= amount;
         _healthBar.UpdateHealthBar(health, maxHealth);
@@ -79,9 +92,24 @@ public class HealthBoss : MonoBehaviour
 
         // Tenta spawnar a poção de cura
         TrySpawnHealthPotion();
+        
+        if (deathMessageText != null)
+        {
+            StartCoroutine(ShowDeathMessage());
+        }
 
         // Destrói o inimigo após a animação de morte
         Destroy(gameObject);
+    }
+    
+    private IEnumerator ShowDeathMessage()
+    {
+        deathMessageText.gameObject.SetActive(true);
+        deathMessageText.text = deathMessage;
+
+        yield return new WaitForSeconds(messageDuration);
+
+        deathMessageText.gameObject.SetActive(false);
     }
 
     private void TrySpawnHealthPotion()

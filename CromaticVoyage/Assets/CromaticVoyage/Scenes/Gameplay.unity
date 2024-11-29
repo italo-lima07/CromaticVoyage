@@ -747,7 +747,7 @@ Transform:
   m_GameObject: {fileID: 325961493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.23, y: 6.56, z: -6.49}
+  m_LocalPosition: {x: 84.67, y: 5.46, z: -6.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1493,7 +1493,7 @@ Transform:
   m_GameObject: {fileID: 666612850}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.23, y: 6.56, z: -6.49}
+  m_LocalPosition: {x: 84.67, y: 5.46, z: -6.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1748,11 +1748,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8012897628097891043, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 43.23
+      value: 84.67
       objectReference: {fileID: 0}
     - target: {fileID: 8012897628097891043, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.56
+      value: 5.46
       objectReference: {fileID: 0}
     - target: {fileID: 8012897628097891043, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3982,6 +3982,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd6d6ca28629e8344a5f9a06a78621fe, type: 3}
+--- !u!114 &1658369389698676142 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5802137151563168698, guid: dd6d6ca28629e8344a5f9a06a78621fe, type: 3}
+  m_PrefabInstance: {fileID: 1658369389698676141}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1769023384465878493
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4624,6 +4635,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: MalachaiPatrol - BOSS FINAL
       objectReference: {fileID: 0}
+    - target: {fileID: 2527266368165710172, guid: d5dc34a1fd6d4894987b1a8b27358215, type: 3}
+      propertyPath: deathMessage
+      value: "Voc\xEA derrotou o Malachai! Agora d\xEA um ataque b\xE1sico, apertando
+        J."
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527266368165710172, guid: d5dc34a1fd6d4894987b1a8b27358215, type: 3}
+      propertyPath: messageDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2527266368165710172, guid: d5dc34a1fd6d4894987b1a8b27358215, type: 3}
+      propertyPath: deathMessageText
+      value: 
+      objectReference: {fileID: 1658369389698676142}
     - target: {fileID: 2527266368165710172, guid: d5dc34a1fd6d4894987b1a8b27358215, type: 3}
       propertyPath: healthPotionPrefab
       value: 

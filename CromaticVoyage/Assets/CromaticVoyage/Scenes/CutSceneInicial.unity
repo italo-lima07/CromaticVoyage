@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 368224888}
   - component: {fileID: 368224890}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Image3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1507,7 +1507,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1288081089}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -1543,6 +1543,82 @@ PlayableDirector:
     value: {fileID: 1473333964}
   - key: {fileID: -1686275007936790331, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
     value: {fileID: 1827949358}
+  - key: {fileID: 1680056620140696093, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4170646678468505355, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1706439535110864109, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2701991926827389228, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 612772265119767165, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6770218969704746852, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5353729425315392993, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6770376128649868556, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5188123637383192185, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3054622458326716332, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3486281825952989442, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6612795211563598480, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 5945895939725413390, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5849118525288786731, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -670378657383729787, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5020712904531034029, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8355688847643241466, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2114863178517639446, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1993140807545908746, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2819950537715297582, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7784106007024816101, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1385540439676479111, guid: 04a38f14f2b663448bc4af88af5b4675, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1996725044162486573, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 1753792943}
+  - key: {fileID: -473408033788256130, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 1983190069}
+  - key: {fileID: -1998986774567841280, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 2134671021}
+  - key: {fileID: -2090881557747531586, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 744900788}
+  - key: {fileID: 6270671176387143557, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 1210590474}
+  - key: {fileID: 4720242377379456916, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 1064896888}
+  - key: {fileID: -1199864118293959006, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 798582389}
+  - key: {fileID: -3432092012993112783, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 780814640}
+  - key: {fileID: -5043109193535964566, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 1453877115}
+  - key: {fileID: -1439413352913316171, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3362412796368029823, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 2132658726}
+  - key: {fileID: -1971548268521704664, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 368224890}
+  - key: {fileID: 6495729283163741045, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 1527846697}
+  - key: {fileID: -6552778302257210540, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 1473333964}
+  - key: {fileID: 1899975354728224999, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 1827949358}
+  - key: {fileID: -3411687796288361499, guid: 64c5dcd2ec0afe042b5c30869a5d4dd5, type: 2}
+    value: {fileID: 576099521}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1453877114
@@ -1564,7 +1640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &1453877115
 Animator:
   serializedVersion: 5
@@ -1668,7 +1744,7 @@ GameObject:
   - component: {fileID: 1473333962}
   - component: {fileID: 1473333964}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Image5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1765,7 +1841,7 @@ GameObject:
   - component: {fileID: 1527846695}
   - component: {fileID: 1527846697}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Image4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1937,7 +2013,7 @@ GameObject:
   - component: {fileID: 1827949356}
   - component: {fileID: 1827949358}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Image6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2177,7 +2253,7 @@ GameObject:
   - component: {fileID: 2132658724}
   - component: {fileID: 2132658726}
   m_Layer: 5
-  m_Name: Image (0)
+  m_Name: Image (0)1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

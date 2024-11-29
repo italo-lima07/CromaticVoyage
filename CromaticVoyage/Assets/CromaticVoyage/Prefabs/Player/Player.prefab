@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 660224023009346927}
   - component: {fileID: 6085010951539677094}
   - component: {fileID: 4124265831749935641}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: LocalATK2
   m_TagString: LocalATK
   m_Icon: {fileID: 0}
