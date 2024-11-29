@@ -186,7 +186,7 @@ MonoBehaviour:
   attackCooldown: 1
   range: 0.85
   damage: 20
-  colliderDistance: 1.26
+  colliderDistance: 0.85
   boxCollider: {fileID: 8009584775929792371}
   playerLayer:
     serializedVersion: 2
@@ -249,7 +249,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -20.90683, y: -0.84009445, z: -0.0023892405}
-  m_LocalScale: {x: 1.601, y: 1.601, z: 1.601}
+  m_LocalScale: {x: 1.1945, y: 1.1945, z: 1.1945}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7917034821518318486}
@@ -273,7 +273,7 @@ MonoBehaviour:
   rightEdge: {fileID: 4239906648429173305}
   enemy: {fileID: 7917034821518318486}
   speed: 2.5
-  idleDuration: 1
+  idleDuration: 2
   anim: {fileID: 5781540208015439057}
 --- !u!1 &7685389997336525658
 GameObject:

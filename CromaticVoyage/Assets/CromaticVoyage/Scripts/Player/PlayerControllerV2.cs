@@ -56,6 +56,7 @@ public class PlayerControllerV2 : MonoBehaviour
     private float invulnerableTime = 1.0f; // Tempo de invulnerabilidade (1 segundo)
     private bool isInvulnerable = false;
 
+    private bool isWalking = false; // Estado para verificar se o áudio de andar está tocando
     private bool noChao;
     
     public float resistanceMultiplier = 1f;
@@ -224,17 +225,41 @@ public class PlayerControllerV2 : MonoBehaviour
 
     public void Move()
     {
-        _moveDirection = Input.GetAxis("Horizontal") * Vector2.right;
-        
-        if (_moveDirection.x > 0)
+        // Obtém o movimento horizontal
+        float horizontal = Input.GetAxis("Horizontal");
+        _moveDirection = horizontal * Vector2.right;
+
+        // Verifica se há movimento
+        if (horizontal != 0)
         {
-            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            // Ajusta a escala do personagem com base na direção
+            if (_moveDirection.x > 0)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else if (_moveDirection.x < 0)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+
+            // Inicia o som de andar se ele ainda não está tocando
+            if (!isWalking)
+            {
+                AudioObserver.OnPlaySfxEvent("walkplayer");
+                isWalking = true;
+            }
         }
-        else if (_moveDirection.x < 0)
+        else
         {
-            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            // Para o som de andar quando não há movimento
+            if (isWalking)
+            {
+                AudioObserver.OnStopSfxEvent("walkplayer");
+                isWalking = false;
+            }
         }
     }
+
     
     public void Attack()
     {
@@ -242,37 +267,37 @@ public class PlayerControllerV2 : MonoBehaviour
         {
             animator.SetTrigger("IsAtk");
 
+            bool attackExecuted = false; // Flag para verificar se algum ataque foi executado
+
             if (Input.GetKeyDown(KeyCode.J))
             {
                 AttackLogic(attackArea);
                 Debug.Log("Ataque 1 executado");
                 IsAttack1Used = true;
-                //OnAttack1Used?.Invoke();
+                attackExecuted = true;
             }
             else if (Input.GetKeyDown(KeyCode.K) && isAttack2Unlocked)
             {
-                // Verifica se o cooldown do Ataque 2 acabou
                 if (attack2CooldownTimer <= 0)
                 {
                     Shoot();
                     Debug.Log("Ataque 2 executado");
-
-                    // Reseta o cooldown do Ataque 2 após o disparo
                     attack2CooldownTimer = attack2Cooldown;
+                    attackExecuted = true;
                 }
                 else
                 {
                     Debug.Log("Ataque 2 ainda está em cooldown");
                 }
-                
             }
             else if (Input.GetKeyDown(KeyCode.L) && isAttack3Unlocked)
             {
                 if (attack3CooldownTimer <= 0)
                 {
                     Debug.Log("Ataque 3 executado");
-                    Attack3Logic(); // Lógica do Ataque 3
-                    attack3CooldownTimer = attack3Cooldown; // Reseta o cooldown
+                    Attack3Logic();
+                    attack3CooldownTimer = attack3Cooldown;
+                    attackExecuted = true;
                 }
                 else
                 {
@@ -280,21 +305,40 @@ public class PlayerControllerV2 : MonoBehaviour
                 }
             }
 
+            // Reproduz o som se um ataque foi executado
+            if (attackExecuted)
+            {
+                AudioObserver.OnPlaySfxEvent("atkplayer");
+            }
+
             StartCoroutine(ResetAttack());
         }
     }
+
     
     private void Shoot()
     {
+        // Instancia o projétil na posição do firePoint e com a rotação do firePoint
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
 
-        // Define a direção do projétil com base na direção que o jogador está virado
+        // Define a direção do projétil com base na direção em que o jogador está virado
         bulletRb.velocity = new Vector2(transform.localScale.x * bulletSpeed, 0);
+
+        // Ajusta a rotação do projétil de acordo com a direção do jogador
+        if (transform.localScale.x < 0)  // Se o jogador estiver virado para a esquerda
+        {
+            bullet.transform.localScale = new Vector3(-1, 1, 1);  // Vira o projétil para a esquerda
+        }
+        else  // Se o jogador estiver virado para a direita
+        {
+            bullet.transform.localScale = new Vector3(1, 1, 1);  // Vira o projétil para a direita
+        }
 
         // Destroi o projétil após um tempo
         Destroy(bullet, bulletLifetime);
     }
+
     
     private void AttackLogic(GameObject attackLocation)
     {
@@ -382,6 +426,9 @@ public class PlayerControllerV2 : MonoBehaviour
 
             currentHealth -= damage; // Aplica o dano ao jogador
             Debug.Log("Jogador recebeu dano: " + damage);
+            
+            // Reproduz o som ao levar dano
+            AudioObserver.OnPlaySfxEvent("hitplayer");
 
             if (currentHealth <= 0)
             {

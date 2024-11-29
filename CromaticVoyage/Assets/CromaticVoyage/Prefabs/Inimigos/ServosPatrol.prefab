@@ -224,6 +224,7 @@ MonoBehaviour:
   dropChance: 0.25
   damageTags:
   - LocalATK
+  - BulletMG
 --- !u!114 &1266988841609819400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,9 +238,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCooldown: 1.5
-  range: 1.18
+  range: 0.62
   damage: 25
-  colliderDistance: 1
+  colliderDistance: 0.8
   boxCollider: {fileID: 5132505914358769770}
   playerLayer:
     serializedVersion: 2

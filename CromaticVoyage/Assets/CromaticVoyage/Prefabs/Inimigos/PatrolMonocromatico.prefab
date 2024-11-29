@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCooldown: 1
-  range: 4.77
+  range: 3.3
   damage: 50
   colliderDistance: 0
   boxCollider: {fileID: 6833399895876811709}

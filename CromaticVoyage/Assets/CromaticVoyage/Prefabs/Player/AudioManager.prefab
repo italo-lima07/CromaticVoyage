@@ -46,8 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 7340070946814200167}
+  loopSource: {fileID: 7340070946814200167}
   clipPulo: {fileID: 8300000, guid: 2059035362e09054591e7a8b5d498a85, type: 3}
-  "clipPo\xE7\xE3o": {fileID: 8300000, guid: 5597603620bfcf6419d116d47b4f2551, type: 3}
+  "clipPo\xE7\xE3o": {fileID: 8300000, guid: 54b4900dfe85f2349beceddac9a20794, type: 3}
+  clipMagiaPlayer: {fileID: 8300000, guid: 9fae3ac567c22e0468a592c4dbe28940, type: 3}
+  clipHitPlayer: {fileID: 8300000, guid: 1493989f0d6b9b84f84009655952ad32, type: 3}
+  clipHitEnemy: {fileID: 8300000, guid: fe2058b923ce57140804ccc8035dc157, type: 3}
+  clipWalkPlayer: {fileID: 8300000, guid: 92cd95d08ffa0d14cac4ff051fd8278d, type: 3}
+  clipWalkEnemy: {fileID: 8300000, guid: 6b158d7c98b031e43ae7a3bf34d39b4c, type: 3}
+  clipAtkEnemy: {fileID: 8300000, guid: 5597603620bfcf6419d116d47b4f2551, type: 3}
+  clipStar: {fileID: 8300000, guid: 6e4d8bea559b25d47be9a3a805110262, type: 3}
 --- !u!82 &7340070946814200167
 AudioSource:
   m_ObjectHideFlags: 0

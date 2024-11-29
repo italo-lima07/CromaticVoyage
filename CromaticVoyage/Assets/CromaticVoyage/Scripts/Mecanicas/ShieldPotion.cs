@@ -11,7 +11,7 @@ public class ShieldPotion : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            AudioObserver.OnPlaySfxEvent("coletavel");
+            AudioObserver.OnPlaySfxEvent("coletavelpocao");
             other.GetComponent<PlayerControllerV2>().ActivateShield();
             Destroy(gameObject); // Destrói a poção após a coleta
         }

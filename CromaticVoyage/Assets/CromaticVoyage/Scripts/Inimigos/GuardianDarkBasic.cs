@@ -35,6 +35,8 @@ public class GuardianDarkBasic : MonoBehaviour
             {
                 cooldownTimer = 0;
                 anim.SetTrigger("GSBatk");
+                // Tocar o som de ataque "atkenemy"
+                AudioObserver.OnPlaySfxEvent("atkenemy");
                 DamagePlayer();
             }
         }

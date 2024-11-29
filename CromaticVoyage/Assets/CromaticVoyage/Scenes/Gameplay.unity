@@ -747,7 +747,7 @@ Transform:
   m_GameObject: {fileID: 325961493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.03, y: -3.76, z: -6.49}
+  m_LocalPosition: {x: 43.23, y: 6.56, z: -6.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1493,7 +1493,7 @@ Transform:
   m_GameObject: {fileID: 666612850}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.03, y: -3.76, z: -6.49}
+  m_LocalPosition: {x: 43.23, y: 6.56, z: -6.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1742,21 +1742,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 813317703963514607, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
-      propertyPath: isAttack3Unlocked
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5492718442113124072, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8012897628097891043, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.03
+      value: 43.23
       objectReference: {fileID: 0}
     - target: {fileID: 8012897628097891043, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.76
+      value: 6.56
       objectReference: {fileID: 0}
     - target: {fileID: 8012897628097891043, guid: 164a2d57efb67d94892774bad28ba7cc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4265,18 +4261,6 @@ PrefabInstance:
     - target: {fileID: 4599720960975643161, guid: c89a226c126094542a1848d4b2b3938f, type: 3}
       propertyPath: m_Name
       value: GuardianPatrol
-      objectReference: {fileID: 0}
-    - target: {fileID: 6389443128005639261, guid: c89a226c126094542a1848d4b2b3938f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.1945
-      objectReference: {fileID: 0}
-    - target: {fileID: 6389443128005639261, guid: c89a226c126094542a1848d4b2b3938f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.1945
-      objectReference: {fileID: 0}
-    - target: {fileID: 6389443128005639261, guid: c89a226c126094542a1848d4b2b3938f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.1945
       objectReference: {fileID: 0}
     - target: {fileID: 6389443128005639261, guid: c89a226c126094542a1848d4b2b3938f, type: 3}
       propertyPath: m_LocalPosition.x

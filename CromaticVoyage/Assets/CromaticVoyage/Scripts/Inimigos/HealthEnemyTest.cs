@@ -40,6 +40,9 @@ public class HealthEnemyTest : MonoBehaviour
 
         // Toca a animação de hit
         animator.SetTrigger("GSBhit");
+        
+        // Tocar o som de dano "hitenemy"
+        AudioObserver.OnPlaySfxEvent("hitenemy");
 
         this.health -= amount;
 
